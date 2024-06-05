@@ -42,6 +42,10 @@ app_user <- capstone_datav2 |>
            !is.na(digital_proficiency) &
            !is.na(daily_apps) &
            !is.na(app_aware))
+app_user <- app_user |> 
+  mutate(Age = factor(Age, levels = c("18-25", "26-35", "36-45", "46-55", "56-65", "65+")))
+glimpse(app_user)
+write.csv(app_user, "Data/Processed/app_user.csv")
 
 #Another goal is to try to understand the reasons why people don't use these apps
 not_use <- capstone_datav2 |> 

@@ -1,0 +1,64 @@
+---
+title: "Capstone Project"
+subtitle: "Capstone Project"
+author: "Silvan Beekman"
+format:
+  html:
+    embed-resources: true
+    toc: true
+execute:
+  warning: false
+editor_options: 
+  chunk_output_type: console
+editor: visual
+---
+
+```{r}
+#| label: load-packages
+#| warning: false
+
+library(gapminder)
+library(ggplot2)
+library(knitr)
+library(tidyverse)
+library(dplyr)
+library(readr)
+library(sf)
+library(rnaturalearth)
+library(usethis)
+```
+
+First I import the data
+
+```{r}
+capstone <- read_csv("Data/Processed/cleaned_capstone_data.csv")
+app_user <- read_csv("Data/Processed/app_user.csv")
+glimpse(capstone)
+```
+
+Look at data of who is using the apps:
+
+```{r}
+glimpse(app_user)
+
+gender_count <- app_user |> count(Gender)
+ggplot(data = gender_count,
+       mapping = aes(x = Gender,
+                     y = n,
+                     fill = Gender)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Distribution of Male and Female App Users",
+       x = "Gender",
+       y = "Count")
+
+age_count <- app_user |> count(Age)
+ggplot(data = age_count,
+       mapping = aes(x = Age,
+                     y = n,
+                     fill = Age)) +
+  geom_bar(stat = "Age") +
+  labs(title = "Age distribution of App users",
+       x = "Age group",
+       y = "Amount")
+glimpse(app_user)
+```
