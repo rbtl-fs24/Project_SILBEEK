@@ -1,4 +1,62 @@
 {R}
 #| label: load-packages
 library(tidyverse)
-capstone_data <- read_csv("data/raw/Capstone_project_data.csv")
+library(dplyr)
+capstone_data <- read_csv("Data/Raw/Capstone_project_data.csv")
+glimpse(capstone_data)
+
+
+capstone_data |> 
+  filter(Age == "18-25")
+
+capstone_data |> 
+  filter(Age == "26-35")
+
+#Rename variables
+capstone_datav1 <- capstone_data |> 
+  rename(digital_proficiency = "How would you rate your overall digital proficiency?",
+         daily_apps = "How often do you use mobile apps for daily tasks?",
+         app_aware = "Are you aware of any mobile apps designed for waste management or recycling?",
+         used_app = "Have you used any of these apps?",
+         which_apps = "Which apps have you used",
+         eff_app = "How effective do you find these apps in helping you manage waste?",
+         feat_app = "What features of these apps do you find most helpful?",
+         improv_app = "What improvements would make these apps more effective for you?",
+         recycling = "How often do you recycle?",
+         prevents_app = "What prevents you from using waste management apps more frequently?",
+         potential_user = "Do you think you will ever try to use a waste-management app?",
+         prevents_recycling = "What prevents you from recycling more frequently?"
+         )
+#delete column where everything is NA
+capstone_datav2 <- capstone_datav1 |> 
+  filter(!if_all(everything(),is.na))
+
+write.csv(capstone_datav2, "Data/Processed/cleaned_capstone_data.csv")
+
+#One of the goals is to understand who uses these apps, so next I clean the relevant columns
+
+app_user <- capstone_datav2 |> 
+  filter(used_app == "Yes" & 
+           !is.na(Age) &
+           !is.na(Gender) &
+           !is.na(digital_proficiency) &
+           !is.na(daily_apps) &
+           !is.na(app_aware))
+
+#Another goal is to try to understand the reasons why people don't use these apps
+not_use <- capstone_datav2 |> 
+  filter(used_app == "No" &
+           !is.na(Age) &
+           !is.na(Gender) &
+           !is.na(digital_proficiency) &
+           !is.na(daily_apps) &
+           !is.na(app_aware))
+
+not_use_cleaned <- not_use |> 
+  select(-which_apps,-eff_app, -feat_app, -improv_app)
+
+
+glimpse(capstone_datav2)
+glimpse(not_use_cleaned)
+
+
