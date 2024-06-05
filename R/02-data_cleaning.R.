@@ -1,0 +1,4 @@
+{R}
+#| label: load-packages
+library(tidyverse)
+capstone_data <- read_csv("data/raw/Capstone_project_data.csv")
