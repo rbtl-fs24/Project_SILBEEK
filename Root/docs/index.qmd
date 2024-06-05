@@ -50,15 +50,24 @@ ggplot(data = gender_count,
   labs(title = "Distribution of Male and Female App Users",
        x = "Gender",
        y = "Count")
+glimpse(app_user)
+
 
 age_count <- app_user |> count(Age)
 ggplot(data = age_count,
        mapping = aes(x = Age,
                      y = n,
                      fill = Age)) +
-  geom_bar(stat = "Age") +
+  geom_bar() +
   labs(title = "Age distribution of App users",
        x = "Age group",
        y = "Amount")
+
+ggplot(data = app_user,
+       mapping = aes(x = Gender,
+                     y = digital_proficiency,
+                     fill = Age)) +
+  geom_col()
+
 glimpse(app_user)
 ```
