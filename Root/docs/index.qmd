@@ -63,6 +63,7 @@ table_age |>
   gt() |> 
   tab_header(title = "Age of survey paricipants") |> 
   cols_label(Age = "Age", 'n()' = "Number of data")
+
 ```
 
 @tbl-age shows not surprisingly that most people were between 18-25 years old, as most students are.
@@ -79,6 +80,7 @@ table_gender |>
     gt() |> 
     tab_header(title = "Gender of survey participants") |> 
     cols_label(Gender = "Gender", 'n()' = "Number of participants")
+
 ```
 
 In @tbl-gender we see that slightly more men were interviewed than women. However at ETH the ratio of men/women is at the moment not fifty-fifty, but there are rather more men, so this is also an expected result.
@@ -102,6 +104,7 @@ combined_table  |>
   cols_label(Gender = "Gender",
              Age = "Age",
              Number_of_participants = "Number of participants")
+
 ```
 
 We can see that we have roughly the same amount of 18-25 and 26-31 year olds for both men and women. This is nice, because this means that we have a good mix in demographic from the students at ETH.
@@ -118,13 +121,15 @@ Next I analyzed the people who said they are using recycling apps.
 count <- app_user |> 
   count(digital_proficiency, Age)
 
-ggplot(data = count,
+digital_proficiencyvis <- ggplot(data = count,
        mapping = aes(x = digital_proficiency,
                      y = n,
                      fill = Age)) +
   geom_col() +
   labs(x = "Digital proficiency",
       y = "Number of people")
+print(digital_proficiencyvis)
+
 ```
 
 @fig-proficiency shows, that on a score of 1-5, people who use recycling apps give themselves scores equal or above 3 in digital proficiency. This means, that people using such apps, think that they are digitally proficient.
@@ -141,13 +146,14 @@ app_percent <- app_user  |>
   mutate(apper = n / sum(n) * 100)
 
 
-ggplot(data = app_percent,
+frequency_vis <- ggplot(data = app_percent,
        mapping = aes(x = daily_apps,
                      y = apper)) +
        geom_bar(stat = "identity", fill = "skyblue", color = "black") +
        labs(x = "Frequency of apps used daily",
             y = "Percentage of people in %") +
       scale_x_discrete(drop = FALSE)
+print(frequency_vis)
 ```
 
 Next, @fig-daily shows the usage of apps for daily tasks, for people using recycling apps. Here the scores are again predominantly in the higher half. So people using recycling apps, are also people who usually use apps for other daily tasks (i.e. Calender, Reminders, Shopping-lists, etc.).
@@ -167,12 +173,14 @@ proportions <- not_use  |>
   count(recycling)  |> 
   mutate(prop = n / sum(n) * 100)
 
-ggplot(data = proportions,
+recycling_vis <- ggplot(data = proportions,
        mapping = aes(x = recycling, y = prop)) +
   geom_bar(stat = "identity", fill = "skyblue", color = "black") +
   scale_x_discrete(drop = FALSE) +
   labs(x = "Recycling frequency", y = "Percentage %") +
   theme_minimal()
+print(recycling_vis)
+
 ```
 
 @fig-recycling above shows the recycling behaviour of people who don't use recycling apps. Most people opted to give themselves a score of 4 out 5 in frequency of recylcing. Here no one gave a score below 3.
