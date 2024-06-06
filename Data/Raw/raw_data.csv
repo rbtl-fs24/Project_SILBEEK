@@ -1,0 +1,31 @@
+"","Age","Gender","How would you rate your overall digital proficiency?","How often do you use mobile apps for daily tasks?","Are you aware of any mobile apps designed for waste management or recycling?","Have you used any of these apps?","Which apps have you used","How effective do you find these apps in helping you manage waste?","What features of these apps do you find most helpful?","What improvements would make these apps more effective for you?","How often do you recycle?","What prevents you from using waste management apps more frequently?","Do you think you will ever try to use a waste-management app?","What prevents you from recycling more frequently?"
+"1",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2","26-35","Female",4,5,"No","No",NA,NA,NA,NA,4,"Lack of awareness",NA,"Lack of information"
+"3","18-25","Female",4,5,"No","No",NA,NA,NA,NA,4,"Lack of awareness",NA,"Inconvenience, Lack of information"
+"4","26-35","Male",5,5,"Yes","Yes",NA,3,NA,NA,5,"Not applicable to me",NA,"Other"
+"5","26-35","Male",5,2,"No","No",NA,NA,NA,NA,4,"Lack of awareness, Not applicable to me",NA,"Inconvenience"
+"6","26-35","Male",4,3,"No",NA,"RecycleNation, iRecycle, MyWaste, Zero Waste Home, Recycle Coach, GoRecycle, PaperKarma, JouleBug, TrashOut, Love Food Hate Waste",NA,NA,NA,5,"Lack of awareness, Not applicable to me",NA,"Inconvenience, Lack of facilities, Lack of information, Other"
+"7","18-25","Male",4,5,"No","No",NA,NA,NA,NA,5,"Lack of awareness",NA,"Lack of information"
+"8","18-25","Male",4,5,"No","No",NA,NA,NA,NA,3,"Lack of awareness",NA,"Inconvenience"
+"9","18-25","Female",4,5,"No","No",NA,2,NA,NA,4,"Lack of awareness, Other",NA,"Inconvenience, Lack of facilities"
+"10","18-25","Female",5,4,"No","No",NA,NA,NA,NA,3,"Lack of awareness",NA,"Lack of facilities"
+"11","18-25","Male",3,3,"Yes","Yes","Zero Waste Home",4,"Notifications, Information on recycling","Other",5,"Lack of time",NA,"Inconvenience"
+"12","18-25","Male",5,5,"No","No",NA,NA,NA,NA,4,"Lack of awareness",NA,"Inconvenience"
+"13",NA,NA,NA,NA,NA,"Yes",NA,NA,NA,NA,NA,NA,NA,NA
+"14","26-35","Female",4,5,"No","No",NA,NA,NA,NA,4,"Lack of awareness","Yes",NA
+"15","18-25","Male",4,3,"No","No",NA,NA,NA,NA,4,"Lack of awareness, Poor app design","Yes",NA
+"16","18-25","Male",3,4,"Yes","Yes","Zero Waste Home",3,"Waste tracking","Better design",NA,NA,NA,NA
+"17","18-25","Female",4,2,"Yes","No",NA,NA,NA,NA,4,"Lack of time","Yes",NA
+"18","18-25","Female",3,2,"No","No",NA,NA,NA,NA,4,"Lack of awareness, Lack of time","No",NA
+"19","18-25","Male",4,2,"No","No",NA,NA,NA,NA,4,"Lack of awareness, Lack of time","Yes",NA
+"20","18-25","Male",5,2,"No","No",NA,NA,NA,NA,3,"Lack of awareness","Yes",NA
+"21","18-25","Male",4,2,"Yes","Yes","RecycleNation",3,"Information on recycling","Better design",NA,NA,NA,NA
+"22","18-25","Male",3,4,"No","No",NA,NA,NA,NA,4,"Lack of awareness, Lack of time","Yes",NA
+"23","18-25","Female",3,4,"No","No",NA,NA,NA,NA,4,"Lack of awareness, Lack of time","No",NA
+"24","26-35","Female",4,3,"No","No",NA,NA,NA,NA,4,"Lack of awareness, Lack of time","No",NA
+"25","18-25","Female",4,4,"Yes","Yes","RecycleNation, Zero Waste Home",3,"Information on recycling, Waste tracking","Better design",NA,NA,NA,NA
+"26","18-25","Female",3,4,"Yes","Yes","RecycleNation, iRecycle",4,"Notifications, Information on recycling, Waste tracking","Better design",NA,NA,NA,NA
+"27","18-25","Female",3,4,"Yes","Yes","iRecycle, MyWaste",3,"Notifications, Waste tracking","Better design",NA,NA,NA,NA
+"28","26-35","Male",4,3,"Yes","Yes","MyWaste",2,"Information on recycling","Better design",NA,NA,NA,NA
+"29","18-25","Male",4,3,"Yes","No",NA,NA,NA,NA,4,"Lack of awareness, Lack of time","No",NA
+"30","18-25","Male",3,2,"No","No",NA,NA,NA,NA,4,"Lack of awareness","No",NA

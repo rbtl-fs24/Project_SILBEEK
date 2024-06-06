@@ -1,0 +1,20 @@
+"","...1","Age","Gender","digital_proficiency","daily_apps","app_aware","used_app","recycling","prevents_app","potential_user","prevents_recycling"
+"1",2,"26-35","Female",4,5,"No","No",4,"Lack of awareness",NA,"Lack of information"
+"2",3,"18-25","Female",4,5,"No","No",4,"Lack of awareness",NA,"Inconvenience, Lack of information"
+"3",5,"26-35","Male",5,2,"No","No",4,"Lack of awareness, Not applicable to me",NA,"Inconvenience"
+"4",7,"18-25","Male",4,5,"No","No",5,"Lack of awareness",NA,"Lack of information"
+"5",8,"18-25","Male",4,5,"No","No",3,"Lack of awareness",NA,"Inconvenience"
+"6",9,"18-25","Female",4,5,"No","No",4,"Lack of awareness, Other",NA,"Inconvenience, Lack of facilities"
+"7",10,"18-25","Female",5,4,"No","No",3,"Lack of awareness",NA,"Lack of facilities"
+"8",12,"18-25","Male",5,5,"No","No",4,"Lack of awareness",NA,"Inconvenience"
+"9",14,"26-35","Female",4,5,"No","No",4,"Lack of awareness","Yes",NA
+"10",15,"18-25","Male",4,3,"No","No",4,"Lack of awareness, Poor app design","Yes",NA
+"11",17,"18-25","Female",4,2,"Yes","No",4,"Lack of time","Yes",NA
+"12",18,"18-25","Female",3,2,"No","No",4,"Lack of awareness, Lack of time","No",NA
+"13",19,"18-25","Male",4,2,"No","No",4,"Lack of awareness, Lack of time","Yes",NA
+"14",20,"18-25","Male",5,2,"No","No",3,"Lack of awareness","Yes",NA
+"15",22,"18-25","Male",3,4,"No","No",4,"Lack of awareness, Lack of time","Yes",NA
+"16",23,"18-25","Female",3,4,"No","No",4,"Lack of awareness, Lack of time","No",NA
+"17",24,"26-35","Female",4,3,"No","No",4,"Lack of awareness, Lack of time","No",NA
+"18",29,"18-25","Male",4,3,"Yes","No",4,"Lack of awareness, Lack of time","No",NA
+"19",30,"18-25","Male",3,2,"No","No",4,"Lack of awareness","No",NA

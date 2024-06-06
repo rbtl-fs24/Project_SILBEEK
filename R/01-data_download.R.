@@ -1,9 +1,9 @@
 #| label: load-packages
 library(readr)
 library(googlesheets4)
-gs4_auth()
-url <- "https://docs.google.com/spreadsheets/d/1GiNZTYQS41btP25RxZd4hvfLgexQRaIT/edit?usp=sharing&ouid=106649709923261753917&rtpof=true&sd=true"
-raw_data <- read_sheet(url)
-write_csv(raw_data, "data/raw/your_project_data.csv")
 
+gs4_auth()
+url <- "https://docs.google.com/spreadsheets/d/1WYoKbBdyg3L1EgabYBRB4P-lkTE50NhkgMyvEtR2yzo/edit?usp=sharing"
+raw_data <- read_sheet(url)
+write.csv(raw_data, "Data/Raw/raw_data.csv")
 

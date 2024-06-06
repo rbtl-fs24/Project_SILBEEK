@@ -2,7 +2,7 @@
 #| label: load-packages
 library(tidyverse)
 library(dplyr)
-capstone_data <- read_csv("Data/Raw/Capstone_project_data.csv")
+capstone_data <- read_csv("Data/Raw/raw_data.csv")
 glimpse(capstone_data)
 
 
@@ -46,7 +46,7 @@ app_user <- capstone_datav2 |>
 glimpse(app_user)
 write.csv(app_user, "Data/Processed/app_user.csv")
 
-#Another goal is to try to understand the reasons why people don't use these apps
+#Another goal is to try to understand the people that don't use these apps
 not_use <- capstone_datav2 |> 
   filter(used_app == "No" &
            !is.na(Age) &
@@ -57,9 +57,43 @@ not_use <- capstone_datav2 |>
 
 not_use_cleaned <- not_use |> 
   select(-which_apps,-eff_app, -feat_app, -improv_app)
+write.csv(not_use_cleaned, "Data/Processed/not_use.csv")
 
 
+#Understanding the reasons
+
+
+lack_aware <- not_use  |> 
+  filter(str_detect(prevents_app, "Lack of awareness"))  |> 
+  summarise(count = n()) |> 
+  mutate(reason = "Lack of awareness")
+
+lack_time <- not_use  |> 
+  filter(str_detect(prevents_app, "Lack of time"))  |> 
+  summarise(count = n()) |> 
+  mutate(reason = "Lack of time")
+
+poor_design <- not_use  |> 
+  filter(str_detect(prevents_app, "Poor app design"))  |> 
+  summarise(count = n()) |> 
+  mutate(reason = "Poor app design")
+
+reasons <- bind_rows(lack_aware, lack_time, poor_design)
+write.csv(reasons, "Data/Processed/reasons.csv")
+
+#Data for table, to get overview of who participated
 glimpse(capstone_datav2)
-glimpse(not_use_cleaned)
 
+table_gender <- capstone_datav2 |> 
+  group_by(Gender) |> 
+  summarise(n()) |> filter(!is.na(Gender))
+
+glimpse(table_gender)
+
+table_age <- capstone_datav2 |> 
+  group_by(Age) |> 
+  summarise(n())
+  
+write.csv(table_gender, "Data/Processed/gender_table.csv")
+write.csv(table_age, "Data/Processed/age_table.csv")
 

@@ -1,0 +1,13 @@
+variable_name,description
+capstone,data from cleaned dataset
+app_user,data from users which use recycling apps
+app_percent,data from daily app usage in percent
+apper,percentage numbers
+count,number of data entries for digitalproficiency and Age
+not_use,dataset for users who don't use recycling apps
+reasons_against,data with reasons why they don't use it
+proportions,data for recycling behaviour
+prop,percentage numbers for recycling
+table_gender,data about gender participation
+table_age,data about age participation
+combined_table,data about gender and age participation

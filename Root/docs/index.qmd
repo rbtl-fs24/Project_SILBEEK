@@ -6,6 +6,8 @@ format:
   html:
     embed-resources: true
     toc: true
+    toc-depth: 2
+date: "2024-06-06"
 execute:
   warning: false
 editor_options: 
@@ -26,48 +28,199 @@ library(readr)
 library(sf)
 library(rnaturalearth)
 library(usethis)
+library(gt)
+library(DT)
+capstone <- read_csv("/cloud/project/Data/Processed/cleaned_capstone_data.csv")
+app_user <- read_csv("/cloud/project/Data/Processed/app_user.csv")
+not_use <- read_csv("/cloud/project/Data/Processed/not_use.csv")
+reasons_against <- read_csv("/cloud/project/Data/Processed/reasons.csv")
 ```
 
-First I import the data
+# Introduction
+
+This report is written in the context of the RBTL course, where the goal was to get hands on experience with gathering, cleaning and analysing data for a study. The idea for the study came across as a coincidence, because I noticed that my flat-mate uses a recycling app and I have never heard of one beforehand. Therefore the goal of the study is to understand who the people are that use recycling apps and why people aren't using them yet.
+
+# Method
+
+The data was gathered by first preparing a google form with relevant questions that provide insight into the interviewed person, their recycling behavior, usage of apps in general, usage of recycling apps and experiences with them. I first interviewed my friends, which was done in a morning when studying at a study-place. This yielded the opportunity to interview people studying in the same place, as some were listening and interested in participating as well. Therefore the data gathering posed to be a easier task than expected.
+
+# Result
+
+## Demographic
+
+First I wanted to understand who participated, by analysing age and gender.
 
 ```{r}
-capstone <- read_csv("Data/Processed/cleaned_capstone_data.csv")
-app_user <- read_csv("Data/Processed/app_user.csv")
-glimpse(capstone)
+#| label: tbl-age
+#| tbl-cap: "Number of answers by age"
+
+table_age <- capstone |> 
+  group_by(Age) |> 
+  summarise(n()) |> filter(!is.na(Age))
+
+table_age |> 
+  gt() |> 
+  tab_header(title = "Age of survey paricipants") |> 
+  cols_label(Age = "Age", 'n()' = "Number of data")
 ```
 
-Look at data of who is using the apps:
+Not surprisingly most people were between 18-25 years old, as most students are.
 
 ```{r}
-glimpse(app_user)
+#| label: tbl-gender
+#| tbl-cap: "Number of answers from male and female"
 
-gender_count <- app_user |> count(Gender)
-ggplot(data = gender_count,
-       mapping = aes(x = Gender,
-                     y = n,
-                     fill = Gender)) +
-  geom_bar(stat = "identity") +
-  labs(title = "Distribution of Male and Female App Users",
-       x = "Gender",
-       y = "Count")
-glimpse(app_user)
+table_gender <- capstone |> 
+  group_by(Gender) |> 
+  summarise(n()) |> filter(!is.na(Gender))
 
-
-age_count <- app_user |> count(Age)
-ggplot(data = age_count,
-       mapping = aes(x = Age,
-                     y = n,
-                     fill = Age)) +
-  geom_bar() +
-  labs(title = "Age distribution of App users",
-       x = "Age group",
-       y = "Amount")
-
-ggplot(data = app_user,
-       mapping = aes(x = Gender,
-                     y = digital_proficiency,
-                     fill = Age)) +
-  geom_col()
-
-glimpse(app_user)
+table_gender |> 
+    gt() |> 
+    tab_header(title = "Gender of survey participants") |> 
+    cols_label(Gender = "Gender", 'n()' = "Number of participants")
 ```
+
+There were slightly more men interviewed than women. However as ETH is trying to aim for a 50/50 share of male/female ratio, at the moment there are still more men, so this is also an expected result.
+
+The next table summarised the findings of the past two:
+
+```{r}
+#| label: tbl-overview
+#| tbl-cap: "Overview of answers by demographic"
+
+# combine table
+combined_table <- capstone  |> 
+  group_by(Gender, Age) |> 
+  summarise(Number_of_participants = n())  |> 
+  filter(!is.na(Gender) & !is.na(Age))
+
+
+combined_table  |> 
+  gt()  |> 
+  tab_header(title = "Survey Participants by Gender and Age --> maybe add amount of people you use the apps")  |> 
+  cols_label(Gender = "Gender",
+             Age = "Age",
+             Number_of_participants = "Number of participants")
+```
+
+We can see that we have roughly the same amount of 18-25 and 26-31 year olds for both men and women. This is nice, because this means that we have a good mix in demographic of the students here at ETH.
+
+## Recycling app-users:
+
+### Digital proficiency
+
+Next I analyzed the people who said they are using recycling apps.
+
+```{r}
+#| label: fig-proficiency
+#| fig-cap: "Reported frequency for usage of apps for daily tasks"
+count <- app_user |> 
+  count(digital_proficiency, Age)
+
+ggplot(data = count,
+       mapping = aes(x = digital_proficiency,
+                     y = n,
+                     fill = Age)) +
+  geom_col() +
+  labs(x = "Digital proficiency",
+      y = "Number of people")
+```
+
+The plot above shows, that on a score of 1-5, people who use recycling apps give themselves scores equal or above 3 in digital proficiency. This means, that people using such apps, think that they are digitally proficient.
+
+### Frequency of apps used daily
+
+```{r}
+#| label: fig-daily
+#| fig-cap: "Reported frequency for usage of apps for daily tasks"
+app_user$daily_apps <- factor(app_user$daily_apps, levels = 1:5) 
+#display in percentage
+app_percent <- app_user  |> 
+  count(daily_apps)  |> 
+  mutate(apper = n / sum(n) * 100)
+
+
+ggplot(data = app_percent,
+       mapping = aes(x = daily_apps,
+                     y = apper)) +
+       geom_bar(stat = "identity", fill = "skyblue", color = "black") +
+       labs(x = "Frequency of apps used daily",
+            y = "Percentage of people in %") +
+      scale_x_discrete(drop = FALSE)
+```
+
+Next this plot shows the usage of apps for daily tasks, for people using recycling apps. Here the scores are again predominantly in the higher half. So people using recycling apps, are also people who usually use apps for other daily tasks (i.e. Calender, Reminders, Shopping-lists, etc.).
+
+## Non-users of recycling apps
+
+### Recycling behaviour
+
+```{r}
+#| label: fig-recycling
+#| fig-cap: "How frequent on a scale of 1-5 do people recycle"
+#making sure that all numbers from 1-5 are shown
+not_use$recycling <- factor(not_use$recycling, levels = 1:5) 
+
+#display in percentage
+proportions <- not_use  |> 
+  count(recycling)  |> 
+  mutate(prop = n / sum(n) * 100)
+
+ggplot(data = proportions,
+       mapping = aes(x = recycling, y = prop)) +
+  geom_bar(stat = "identity", fill = "skyblue", color = "black") +
+  scale_x_discrete(drop = FALSE) +
+  labs(x = "Recycling frequency", y = "Percentage %") +
+  theme_minimal()
+```
+
+The plot above shows the recycling behaviour of people who don't use recycling apps. Most people opted to give themselves a score of 4 out 5 in frequency of recylcing. Here no one gave a score below 3.
+
+### Reasons
+
+```{r}
+#| label: fig-reasons
+#| fig-cap: "Reasons why people don't use recycling-apps"
+ggplot(data = reasons_against,
+       mapping = aes(x = reason,
+                     y = count)) +
+      geom_bar(stat = "identity", fill = "skyblue", color = "black") +
+      labs(x = "Reasons for not using recycling-apps",
+           y = "Number of selected")
+```
+
+When asked for the possible reasons as to why they are not using recycling-apps, almost everyone said they wouldn't know about these apps. Followed by the lack of time, with checking and interacting with an additional app everyday. One person who has tried recycling apps, said that the design of the app was too poor, to continue using it.
+
+# Conclusion
+
+The small study provided interesting insight into the user and especially non-users of recycling apps:
+
+Recycling-app users:
+
+-   Have a high digital proficiency
+
+-   Enjoy using apps to help keep track of every day activities
+
+Non-users of recycling-apps:
+
+-   Are people who recycle often
+
+-   Have never heard of such an app and therefore never considered using one
+
+For developers of recycling apps it might be an interesting insight, that most people who don't use such an app are not aware of their existence. Maybe also the marketing or design of the app should be for people with less digital proficiency, by taking a human-centered design approach.
+
+# References
+
+@fig-proficiency
+
+@fig-daily
+
+@fig-recycling
+
+@fig-reasons
+
+@tbl-gender
+
+@tbl-age
+
+@tbl-overview
