@@ -55,7 +55,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+}</style>
 
 
 <script>/*!
@@ -3086,7 +3106,6 @@ vertical-align: -.125em;
   <li><a href="#non-users-of-recycling-apps" id="toc-non-users-of-recycling-apps" class="nav-link" data-scroll-target="#non-users-of-recycling-apps">Non-users of recycling apps</a></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
 </div>
@@ -3124,30 +3143,13 @@ vertical-align: -.125em;
 </header>
 
 
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usethis)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>capstone <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;/cloud/project/Data/Processed/cleaned_capstone_data.csv&quot;</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>app_user <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;/cloud/project/Data/Processed/app_user.csv&quot;</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>not_use <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;/cloud/project/Data/Processed/not_use.csv&quot;</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>reasons_against <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;/cloud/project/Data/Processed/reasons.csv&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>This report is written in the context of the RBTL course, where the goal was to get hands on experience with gathering, cleaning and analysing data for a study. The idea for the study came across as a coincidence, because I noticed that my flat-mate uses a recycling app and I have never heard of one beforehand. Therefore the goal of the study is to understand who the people are that use recycling apps and why people aren’t using them yet.</p>
+<p>This report is written in the context of the RBTL course, where the goal was to get hands on experience with gathering, cleaning and analysing data for a study. We are trying to understand waste and more specifically waste management. As everyone knows, we should recycle as much as possible, but current effort are just not enough <span class="citation" data-cites="kibria2023plastic">Kibria et al. (<a href="#ref-kibria2023plastic" role="doc-biblioref">2023</a>)</span> The idea for the study came across as a coincidence, because I noticed that my flat-mate uses a recycling app and I have never heard of one beforehand. According to <span class="citation" data-cites="johansson2016understanding">Johansson (<a href="#ref-johansson2016understanding" role="doc-biblioref">2016</a>)</span> the most important factors that help increase recycling are, well-designed infrastructure for recycling, specific recycling knowledge and general understanding of environmental aspects. Those could all be covered by an app. Another study explores how gamification of recycling can increase recyling rate, also something that can be achieved through an app <span class="citation" data-cites="helmefalk2020make">Helmefalk and Rosenlund (<a href="#ref-helmefalk2020make" role="doc-biblioref">2020</a>)</span>. Therefore the goal of the study is to understand who the people are that use recycling apps and why people aren’t using them yet.</p>
 </section>
 <section id="method" class="level1">
 <h1>Method</h1>
-<p>The data was gathered by first preparing a google form with relevant questions that provide insight into the interviewed person, their recycling behavior, usage of apps in general, usage of recycling apps and experiences with them. I first interviewed my friends, which was done in a morning when studying at a study-place. This yielded the opportunity to interview people studying in the same place, as some were listening and interested in participating as well. Therefore the data gathering posed to be a easier task than expected.</p>
+<p>The data was gathered using a Google form designed with relevant questions to gain inshights into the respondents recycling behavior, general app usage, and experiences with recycling apps. Initially, I interviewed my friends during a morning stud session at a study place. I informed all participants about the study’s purpose and ensured that it is anonymous. This setting (study-place) provided the opportunity to engage with other students present in this room. Therefore the data collection process was more efficient and productive than anticipated.</p>
 </section>
 <section id="result" class="level1">
 <h1>Result</h1>
@@ -3155,14 +3157,14 @@ vertical-align: -.125em;
 <h2 class="anchored" data-anchor-id="demographic">Demographic</h2>
 <p>First I wanted to understand who participated, by analysing age and gender.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>table_age <span class="ot">&lt;-</span> capstone <span class="sc">|&gt;</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Age) <span class="sc">|&gt;</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>()) <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Age))</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>table_age <span class="sc">|&gt;</span> </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">&quot;Age of survey paricipants&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">Age =</span> <span class="st">&quot;Age&quot;</span>, <span class="st">&#39;n()&#39;</span> <span class="ot">=</span> <span class="st">&quot;Number of data&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>table_age <span class="ot">&lt;-</span> capstone <span class="sc">|&gt;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Age) <span class="sc">|&gt;</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>()) <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Age))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>table_age <span class="sc">|&gt;</span> </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">&quot;Age of survey paricipants&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">Age =</span> <span class="st">&quot;Age&quot;</span>, <span class="st">&#39;n()&#39;</span> <span class="ot">=</span> <span class="st">&quot;Number of data&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="tbl-age" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-age-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -3171,20 +3173,20 @@ Table 1: Number of answers by age
 <div aria-describedby="tbl-age-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div>
-<div id="pmysxfybjq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pmysxfybjq table {
+<div id="nreclcjbnu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nreclcjbnu table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#pmysxfybjq thead, #pmysxfybjq tbody, #pmysxfybjq tfoot, #pmysxfybjq tr, #pmysxfybjq td, #pmysxfybjq th {
+#nreclcjbnu thead, #nreclcjbnu tbody, #nreclcjbnu tfoot, #nreclcjbnu tr, #nreclcjbnu td, #nreclcjbnu th {
 border-style: none;
 }
-#pmysxfybjq p {
+#nreclcjbnu p {
 margin: 0;
 padding: 0;
 }
-#pmysxfybjq .gt_table {
+#nreclcjbnu .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -3209,11 +3211,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#pmysxfybjq .gt_caption {
+#nreclcjbnu .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#pmysxfybjq .gt_title {
+#nreclcjbnu .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -3224,7 +3226,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#pmysxfybjq .gt_subtitle {
+#nreclcjbnu .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -3235,7 +3237,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#pmysxfybjq .gt_heading {
+#nreclcjbnu .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -3246,12 +3248,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#pmysxfybjq .gt_bottom_border {
+#nreclcjbnu .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#pmysxfybjq .gt_col_headings {
+#nreclcjbnu .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3265,7 +3267,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#pmysxfybjq .gt_col_heading {
+#nreclcjbnu .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3284,7 +3286,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#pmysxfybjq .gt_column_spanner_outer {
+#nreclcjbnu .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3295,13 +3297,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#pmysxfybjq .gt_column_spanner_outer:first-child {
+#nreclcjbnu .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#pmysxfybjq .gt_column_spanner_outer:last-child {
+#nreclcjbnu .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#pmysxfybjq .gt_column_spanner {
+#nreclcjbnu .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -3312,10 +3314,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#pmysxfybjq .gt_spanner_row {
+#nreclcjbnu .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#pmysxfybjq .gt_group_heading {
+#nreclcjbnu .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3340,7 +3342,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#pmysxfybjq .gt_empty_group_heading {
+#nreclcjbnu .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -3354,13 +3356,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#pmysxfybjq .gt_from_md > :first-child {
+#nreclcjbnu .gt_from_md > :first-child {
 margin-top: 0;
 }
-#pmysxfybjq .gt_from_md > :last-child {
+#nreclcjbnu .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#pmysxfybjq .gt_row {
+#nreclcjbnu .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3378,7 +3380,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#pmysxfybjq .gt_stub {
+#nreclcjbnu .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3390,7 +3392,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#pmysxfybjq .gt_stub_row_group {
+#nreclcjbnu .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3403,13 +3405,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#pmysxfybjq .gt_row_group_first td {
+#nreclcjbnu .gt_row_group_first td {
 border-top-width: 2px;
 }
-#pmysxfybjq .gt_row_group_first th {
+#nreclcjbnu .gt_row_group_first th {
 border-top-width: 2px;
 }
-#pmysxfybjq .gt_summary_row {
+#nreclcjbnu .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3418,14 +3420,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#pmysxfybjq .gt_first_summary_row {
+#nreclcjbnu .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#pmysxfybjq .gt_first_summary_row.thick {
+#nreclcjbnu .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#pmysxfybjq .gt_last_summary_row {
+#nreclcjbnu .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3434,7 +3436,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#pmysxfybjq .gt_grand_summary_row {
+#nreclcjbnu .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3443,7 +3445,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#pmysxfybjq .gt_first_grand_summary_row {
+#nreclcjbnu .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3452,7 +3454,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#pmysxfybjq .gt_last_grand_summary_row_top {
+#nreclcjbnu .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3461,10 +3463,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#pmysxfybjq .gt_striped {
+#nreclcjbnu .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#pmysxfybjq .gt_table_body {
+#nreclcjbnu .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3472,7 +3474,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#pmysxfybjq .gt_footnotes {
+#nreclcjbnu .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3485,7 +3487,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#pmysxfybjq .gt_footnote {
+#nreclcjbnu .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -3493,7 +3495,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#pmysxfybjq .gt_sourcenotes {
+#nreclcjbnu .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3506,57 +3508,57 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#pmysxfybjq .gt_sourcenote {
+#nreclcjbnu .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#pmysxfybjq .gt_left {
+#nreclcjbnu .gt_left {
 text-align: left;
 }
-#pmysxfybjq .gt_center {
+#nreclcjbnu .gt_center {
 text-align: center;
 }
-#pmysxfybjq .gt_right {
+#nreclcjbnu .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#pmysxfybjq .gt_font_normal {
+#nreclcjbnu .gt_font_normal {
 font-weight: normal;
 }
-#pmysxfybjq .gt_font_bold {
+#nreclcjbnu .gt_font_bold {
 font-weight: bold;
 }
-#pmysxfybjq .gt_font_italic {
+#nreclcjbnu .gt_font_italic {
 font-style: italic;
 }
-#pmysxfybjq .gt_super {
+#nreclcjbnu .gt_super {
 font-size: 65%;
 }
-#pmysxfybjq .gt_footnote_marks {
+#nreclcjbnu .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#pmysxfybjq .gt_asterisk {
+#nreclcjbnu .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#pmysxfybjq .gt_indent_1 {
+#nreclcjbnu .gt_indent_1 {
 text-indent: 5px;
 }
-#pmysxfybjq .gt_indent_2 {
+#nreclcjbnu .gt_indent_2 {
 text-indent: 10px;
 }
-#pmysxfybjq .gt_indent_3 {
+#nreclcjbnu .gt_indent_3 {
 text-indent: 15px;
 }
-#pmysxfybjq .gt_indent_4 {
+#nreclcjbnu .gt_indent_4 {
 text-indent: 20px;
 }
-#pmysxfybjq .gt_indent_5 {
+#nreclcjbnu .gt_indent_5 {
 text-indent: 25px;
 }
 </style>
@@ -3590,16 +3592,16 @@ text-indent: 25px;
 </figure>
 </div>
 </div>
-<p>Not surprisingly most people were between 18-25 years old, as most students are.</p>
+<p><a href="#tbl-age" class="quarto-xref">Table 1</a> shows not surprisingly that most people were between 18-25 years old, as most students are.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>table_gender <span class="ot">&lt;-</span> capstone <span class="sc">|&gt;</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Gender) <span class="sc">|&gt;</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>()) <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Gender))</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>table_gender <span class="sc">|&gt;</span> </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">&quot;Gender of survey participants&quot;</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_label</span>(<span class="at">Gender =</span> <span class="st">&quot;Gender&quot;</span>, <span class="st">&#39;n()&#39;</span> <span class="ot">=</span> <span class="st">&quot;Number of participants&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>table_gender <span class="ot">&lt;-</span> capstone <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Gender) <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>()) <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Gender))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>table_gender <span class="sc">|&gt;</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gt</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">&quot;Gender of survey participants&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cols_label</span>(<span class="at">Gender =</span> <span class="st">&quot;Gender&quot;</span>, <span class="st">&#39;n()&#39;</span> <span class="ot">=</span> <span class="st">&quot;Number of participants&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="tbl-gender" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-gender-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -3608,20 +3610,20 @@ Table 2: Number of answers from male and female
 <div aria-describedby="tbl-gender-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div>
-<div id="ttnpgrrefe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ttnpgrrefe table {
+<div id="ugqxadhxei" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ugqxadhxei table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#ttnpgrrefe thead, #ttnpgrrefe tbody, #ttnpgrrefe tfoot, #ttnpgrrefe tr, #ttnpgrrefe td, #ttnpgrrefe th {
+#ugqxadhxei thead, #ugqxadhxei tbody, #ugqxadhxei tfoot, #ugqxadhxei tr, #ugqxadhxei td, #ugqxadhxei th {
 border-style: none;
 }
-#ttnpgrrefe p {
+#ugqxadhxei p {
 margin: 0;
 padding: 0;
 }
-#ttnpgrrefe .gt_table {
+#ugqxadhxei .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -3646,11 +3648,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#ttnpgrrefe .gt_caption {
+#ugqxadhxei .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#ttnpgrrefe .gt_title {
+#ugqxadhxei .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -3661,7 +3663,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#ttnpgrrefe .gt_subtitle {
+#ugqxadhxei .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -3672,7 +3674,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#ttnpgrrefe .gt_heading {
+#ugqxadhxei .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -3683,12 +3685,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#ttnpgrrefe .gt_bottom_border {
+#ugqxadhxei .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ttnpgrrefe .gt_col_headings {
+#ugqxadhxei .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3702,7 +3704,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#ttnpgrrefe .gt_col_heading {
+#ugqxadhxei .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3721,7 +3723,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#ttnpgrrefe .gt_column_spanner_outer {
+#ugqxadhxei .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3732,13 +3734,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#ttnpgrrefe .gt_column_spanner_outer:first-child {
+#ugqxadhxei .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#ttnpgrrefe .gt_column_spanner_outer:last-child {
+#ugqxadhxei .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#ttnpgrrefe .gt_column_spanner {
+#ugqxadhxei .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -3749,10 +3751,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#ttnpgrrefe .gt_spanner_row {
+#ugqxadhxei .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#ttnpgrrefe .gt_group_heading {
+#ugqxadhxei .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3777,7 +3779,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#ttnpgrrefe .gt_empty_group_heading {
+#ugqxadhxei .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -3791,13 +3793,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#ttnpgrrefe .gt_from_md > :first-child {
+#ugqxadhxei .gt_from_md > :first-child {
 margin-top: 0;
 }
-#ttnpgrrefe .gt_from_md > :last-child {
+#ugqxadhxei .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#ttnpgrrefe .gt_row {
+#ugqxadhxei .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3815,7 +3817,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#ttnpgrrefe .gt_stub {
+#ugqxadhxei .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3827,7 +3829,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ttnpgrrefe .gt_stub_row_group {
+#ugqxadhxei .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3840,13 +3842,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#ttnpgrrefe .gt_row_group_first td {
+#ugqxadhxei .gt_row_group_first td {
 border-top-width: 2px;
 }
-#ttnpgrrefe .gt_row_group_first th {
+#ugqxadhxei .gt_row_group_first th {
 border-top-width: 2px;
 }
-#ttnpgrrefe .gt_summary_row {
+#ugqxadhxei .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3855,14 +3857,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ttnpgrrefe .gt_first_summary_row {
+#ugqxadhxei .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#ttnpgrrefe .gt_first_summary_row.thick {
+#ugqxadhxei .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#ttnpgrrefe .gt_last_summary_row {
+#ugqxadhxei .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3871,7 +3873,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ttnpgrrefe .gt_grand_summary_row {
+#ugqxadhxei .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3880,7 +3882,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ttnpgrrefe .gt_first_grand_summary_row {
+#ugqxadhxei .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3889,7 +3891,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#ttnpgrrefe .gt_last_grand_summary_row_top {
+#ugqxadhxei .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3898,10 +3900,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#ttnpgrrefe .gt_striped {
+#ugqxadhxei .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#ttnpgrrefe .gt_table_body {
+#ugqxadhxei .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3909,7 +3911,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ttnpgrrefe .gt_footnotes {
+#ugqxadhxei .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3922,7 +3924,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#ttnpgrrefe .gt_footnote {
+#ugqxadhxei .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -3930,7 +3932,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ttnpgrrefe .gt_sourcenotes {
+#ugqxadhxei .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3943,57 +3945,57 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#ttnpgrrefe .gt_sourcenote {
+#ugqxadhxei .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ttnpgrrefe .gt_left {
+#ugqxadhxei .gt_left {
 text-align: left;
 }
-#ttnpgrrefe .gt_center {
+#ugqxadhxei .gt_center {
 text-align: center;
 }
-#ttnpgrrefe .gt_right {
+#ugqxadhxei .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#ttnpgrrefe .gt_font_normal {
+#ugqxadhxei .gt_font_normal {
 font-weight: normal;
 }
-#ttnpgrrefe .gt_font_bold {
+#ugqxadhxei .gt_font_bold {
 font-weight: bold;
 }
-#ttnpgrrefe .gt_font_italic {
+#ugqxadhxei .gt_font_italic {
 font-style: italic;
 }
-#ttnpgrrefe .gt_super {
+#ugqxadhxei .gt_super {
 font-size: 65%;
 }
-#ttnpgrrefe .gt_footnote_marks {
+#ugqxadhxei .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#ttnpgrrefe .gt_asterisk {
+#ugqxadhxei .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#ttnpgrrefe .gt_indent_1 {
+#ugqxadhxei .gt_indent_1 {
 text-indent: 5px;
 }
-#ttnpgrrefe .gt_indent_2 {
+#ugqxadhxei .gt_indent_2 {
 text-indent: 10px;
 }
-#ttnpgrrefe .gt_indent_3 {
+#ugqxadhxei .gt_indent_3 {
 text-indent: 15px;
 }
-#ttnpgrrefe .gt_indent_4 {
+#ugqxadhxei .gt_indent_4 {
 text-indent: 20px;
 }
-#ttnpgrrefe .gt_indent_5 {
+#ugqxadhxei .gt_indent_5 {
 text-indent: 25px;
 }
 </style>
@@ -4027,22 +4029,22 @@ text-indent: 25px;
 </figure>
 </div>
 </div>
-<p>There were slightly more men interviewed than women. However as ETH is trying to aim for a 50/50 share of male/female ratio, at the moment there are still more men, so this is also an expected result.</p>
-<p>The next table summarised the findings of the past two:</p>
+<p>In <a href="#tbl-gender" class="quarto-xref">Table 2</a> we see that slightly more men were interviewed than women. However at ETH the ratio of men/women is at the moment not fifty-fifty, but there are rather more men, so this is also an expected result.</p>
+<p>The <strong>?@tbl-combined</strong> summarizes the findings of the past two:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combine table</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>combined_table <span class="ot">&lt;-</span> capstone  <span class="sc">|&gt;</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Gender, Age) <span class="sc">|&gt;</span> </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Number_of_participants =</span> <span class="fu">n</span>())  <span class="sc">|&gt;</span> </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Gender) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(Age))</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>combined_table  <span class="sc">|&gt;</span> </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()  <span class="sc">|&gt;</span> </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">&quot;Survey Participants by Gender and Age --&gt; maybe add amount of people you use the apps&quot;</span>)  <span class="sc">|&gt;</span> </span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">Gender =</span> <span class="st">&quot;Gender&quot;</span>,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">Age =</span> <span class="st">&quot;Age&quot;</span>,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">Number_of_participants =</span> <span class="st">&quot;Number of participants&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combine table</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>combined_table <span class="ot">&lt;-</span> capstone  <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Gender, Age) <span class="sc">|&gt;</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Number_of_participants =</span> <span class="fu">n</span>())  <span class="sc">|&gt;</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(Gender) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(Age))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>combined_table  <span class="sc">|&gt;</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()  <span class="sc">|&gt;</span> </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">&quot;Survey Participants by Gender and Age --&gt; maybe add amount of people you use the apps&quot;</span>)  <span class="sc">|&gt;</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">Gender =</span> <span class="st">&quot;Gender&quot;</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">Age =</span> <span class="st">&quot;Age&quot;</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>             <span class="at">Number_of_participants =</span> <span class="st">&quot;Number of participants&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="tbl-overview" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -4051,20 +4053,20 @@ Table 3: Overview of answers by demographic
 <div aria-describedby="tbl-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <div>
-<div id="iygwmugmnt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#iygwmugmnt table {
+<div id="hjgsmevlfz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hjgsmevlfz table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#iygwmugmnt thead, #iygwmugmnt tbody, #iygwmugmnt tfoot, #iygwmugmnt tr, #iygwmugmnt td, #iygwmugmnt th {
+#hjgsmevlfz thead, #hjgsmevlfz tbody, #hjgsmevlfz tfoot, #hjgsmevlfz tr, #hjgsmevlfz td, #hjgsmevlfz th {
 border-style: none;
 }
-#iygwmugmnt p {
+#hjgsmevlfz p {
 margin: 0;
 padding: 0;
 }
-#iygwmugmnt .gt_table {
+#hjgsmevlfz .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -4089,11 +4091,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#iygwmugmnt .gt_caption {
+#hjgsmevlfz .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#iygwmugmnt .gt_title {
+#hjgsmevlfz .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -4104,7 +4106,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#iygwmugmnt .gt_subtitle {
+#hjgsmevlfz .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -4115,7 +4117,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#iygwmugmnt .gt_heading {
+#hjgsmevlfz .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -4126,12 +4128,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#iygwmugmnt .gt_bottom_border {
+#hjgsmevlfz .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#iygwmugmnt .gt_col_headings {
+#hjgsmevlfz .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4145,7 +4147,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#iygwmugmnt .gt_col_heading {
+#hjgsmevlfz .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4164,7 +4166,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#iygwmugmnt .gt_column_spanner_outer {
+#hjgsmevlfz .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4175,13 +4177,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#iygwmugmnt .gt_column_spanner_outer:first-child {
+#hjgsmevlfz .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#iygwmugmnt .gt_column_spanner_outer:last-child {
+#hjgsmevlfz .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#iygwmugmnt .gt_column_spanner {
+#hjgsmevlfz .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -4192,10 +4194,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#iygwmugmnt .gt_spanner_row {
+#hjgsmevlfz .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#iygwmugmnt .gt_group_heading {
+#hjgsmevlfz .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4220,7 +4222,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#iygwmugmnt .gt_empty_group_heading {
+#hjgsmevlfz .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -4234,13 +4236,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#iygwmugmnt .gt_from_md > :first-child {
+#hjgsmevlfz .gt_from_md > :first-child {
 margin-top: 0;
 }
-#iygwmugmnt .gt_from_md > :last-child {
+#hjgsmevlfz .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#iygwmugmnt .gt_row {
+#hjgsmevlfz .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4258,7 +4260,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#iygwmugmnt .gt_stub {
+#hjgsmevlfz .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4270,7 +4272,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#iygwmugmnt .gt_stub_row_group {
+#hjgsmevlfz .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4283,13 +4285,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#iygwmugmnt .gt_row_group_first td {
+#hjgsmevlfz .gt_row_group_first td {
 border-top-width: 2px;
 }
-#iygwmugmnt .gt_row_group_first th {
+#hjgsmevlfz .gt_row_group_first th {
 border-top-width: 2px;
 }
-#iygwmugmnt .gt_summary_row {
+#hjgsmevlfz .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4298,14 +4300,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#iygwmugmnt .gt_first_summary_row {
+#hjgsmevlfz .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#iygwmugmnt .gt_first_summary_row.thick {
+#hjgsmevlfz .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#iygwmugmnt .gt_last_summary_row {
+#hjgsmevlfz .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4314,7 +4316,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#iygwmugmnt .gt_grand_summary_row {
+#hjgsmevlfz .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4323,7 +4325,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#iygwmugmnt .gt_first_grand_summary_row {
+#hjgsmevlfz .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4332,7 +4334,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#iygwmugmnt .gt_last_grand_summary_row_top {
+#hjgsmevlfz .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4341,10 +4343,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#iygwmugmnt .gt_striped {
+#hjgsmevlfz .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#iygwmugmnt .gt_table_body {
+#hjgsmevlfz .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4352,7 +4354,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#iygwmugmnt .gt_footnotes {
+#hjgsmevlfz .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4365,7 +4367,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#iygwmugmnt .gt_footnote {
+#hjgsmevlfz .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -4373,7 +4375,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#iygwmugmnt .gt_sourcenotes {
+#hjgsmevlfz .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4386,57 +4388,57 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#iygwmugmnt .gt_sourcenote {
+#hjgsmevlfz .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#iygwmugmnt .gt_left {
+#hjgsmevlfz .gt_left {
 text-align: left;
 }
-#iygwmugmnt .gt_center {
+#hjgsmevlfz .gt_center {
 text-align: center;
 }
-#iygwmugmnt .gt_right {
+#hjgsmevlfz .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#iygwmugmnt .gt_font_normal {
+#hjgsmevlfz .gt_font_normal {
 font-weight: normal;
 }
-#iygwmugmnt .gt_font_bold {
+#hjgsmevlfz .gt_font_bold {
 font-weight: bold;
 }
-#iygwmugmnt .gt_font_italic {
+#hjgsmevlfz .gt_font_italic {
 font-style: italic;
 }
-#iygwmugmnt .gt_super {
+#hjgsmevlfz .gt_super {
 font-size: 65%;
 }
-#iygwmugmnt .gt_footnote_marks {
+#hjgsmevlfz .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#iygwmugmnt .gt_asterisk {
+#hjgsmevlfz .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#iygwmugmnt .gt_indent_1 {
+#hjgsmevlfz .gt_indent_1 {
 text-indent: 5px;
 }
-#iygwmugmnt .gt_indent_2 {
+#hjgsmevlfz .gt_indent_2 {
 text-indent: 10px;
 }
-#iygwmugmnt .gt_indent_3 {
+#hjgsmevlfz .gt_indent_3 {
 text-indent: 15px;
 }
-#iygwmugmnt .gt_indent_4 {
+#hjgsmevlfz .gt_indent_4 {
 text-indent: 20px;
 }
-#iygwmugmnt .gt_indent_5 {
+#hjgsmevlfz .gt_indent_5 {
 text-indent: 25px;
 }
 </style>
@@ -4484,7 +4486,7 @@ text-indent: 25px;
 </figure>
 </div>
 </div>
-<p>We can see that we have roughly the same amount of 18-25 and 26-31 year olds for both men and women. This is nice, because this means that we have a good mix in demographic of the students here at ETH.</p>
+<p>We can see that we have roughly the same amount of 18-25 and 26-31 year olds for both men and women. This is nice, because this means that we have a good mix in demographic from the students at ETH.</p>
 </section>
 <section id="recycling-app-users" class="level2">
 <h2 class="anchored" data-anchor-id="recycling-app-users">Recycling app-users:</h2>
@@ -4492,16 +4494,16 @@ text-indent: 25px;
 <h3 class="anchored" data-anchor-id="digital-proficiency">Digital proficiency</h3>
 <p>Next I analyzed the people who said they are using recycling apps.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>count <span class="ot">&lt;-</span> app_user <span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(digital_proficiency, Age)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> count,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> digital_proficiency,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> n,</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">fill =</span> Age)) <span class="sc">+</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Digital proficiency&quot;</span>,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">&quot;Number of people&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>count <span class="ot">&lt;-</span> app_user <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(digital_proficiency, Age)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> count,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> digital_proficiency,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> n,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">fill =</span> Age)) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Digital proficiency&quot;</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">&quot;Number of people&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-proficiency" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -4515,25 +4517,25 @@ Figure 1: Reported frequency for usage of apps for daily tasks
 </div>
 </div>
 </div>
-<p>The plot above shows, that on a score of 1-5, people who use recycling apps give themselves scores equal or above 3 in digital proficiency. This means, that people using such apps, think that they are digitally proficient.</p>
+<p><a href="#fig-proficiency" class="quarto-xref">Figure 1</a> shows, that on a score of 1-5, people who use recycling apps give themselves scores equal or above 3 in digital proficiency. This means, that people using such apps, think that they are digitally proficient.</p>
 </section>
 <section id="frequency-of-apps-used-daily" class="level3">
 <h3 class="anchored" data-anchor-id="frequency-of-apps-used-daily">Frequency of apps used daily</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>app_user<span class="sc">$</span>daily_apps <span class="ot">&lt;-</span> <span class="fu">factor</span>(app_user<span class="sc">$</span>daily_apps, <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#display in percentage</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>app_percent <span class="ot">&lt;-</span> app_user  <span class="sc">|&gt;</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(daily_apps)  <span class="sc">|&gt;</span> </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">apper =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> app_percent,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> daily_apps,</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> apper)) <span class="sc">+</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>       <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Frequency of apps used daily&quot;</span>,</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> <span class="st">&quot;Percentage of people in %&quot;</span>) <span class="sc">+</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_x_discrete</span>(<span class="at">drop =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>app_user<span class="sc">$</span>daily_apps <span class="ot">&lt;-</span> <span class="fu">factor</span>(app_user<span class="sc">$</span>daily_apps, <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#display in percentage</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>app_percent <span class="ot">&lt;-</span> app_user  <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(daily_apps)  <span class="sc">|&gt;</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">apper =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> app_percent,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> daily_apps,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> apper)) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>       <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Frequency of apps used daily&quot;</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> <span class="st">&quot;Percentage of people in %&quot;</span>) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_x_discrete</span>(<span class="at">drop =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-daily" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -4547,7 +4549,7 @@ Figure 2: Reported frequency for usage of apps for daily tasks
 </div>
 </div>
 </div>
-<p>Next this plot shows the usage of apps for daily tasks, for people using recycling apps. Here the scores are again predominantly in the higher half. So people using recycling apps, are also people who usually use apps for other daily tasks (i.e. Calender, Reminders, Shopping-lists, etc.).</p>
+<p>Next, <a href="#fig-daily" class="quarto-xref">Figure 2</a> shows the usage of apps for daily tasks, for people using recycling apps. Here the scores are again predominantly in the higher half. So people using recycling apps, are also people who usually use apps for other daily tasks (i.e. Calender, Reminders, Shopping-lists, etc.).</p>
 </section>
 </section>
 <section id="non-users-of-recycling-apps" class="level2">
@@ -4555,20 +4557,20 @@ Figure 2: Reported frequency for usage of apps for daily tasks
 <section id="recycling-behaviour" class="level3">
 <h3 class="anchored" data-anchor-id="recycling-behaviour">Recycling behaviour</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#making sure that all numbers from 1-5 are shown</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>not_use<span class="sc">$</span>recycling <span class="ot">&lt;-</span> <span class="fu">factor</span>(not_use<span class="sc">$</span>recycling, <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#display in percentage</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>proportions <span class="ot">&lt;-</span> not_use  <span class="sc">|&gt;</span> </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(recycling)  <span class="sc">|&gt;</span> </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> proportions,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> recycling, <span class="at">y =</span> prop)) <span class="sc">+</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Recycling frequency&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Percentage %&quot;</span>) <span class="sc">+</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#making sure that all numbers from 1-5 are shown</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>not_use<span class="sc">$</span>recycling <span class="ot">&lt;-</span> <span class="fu">factor</span>(not_use<span class="sc">$</span>recycling, <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#display in percentage</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>proportions <span class="ot">&lt;-</span> not_use  <span class="sc">|&gt;</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(recycling)  <span class="sc">|&gt;</span> </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> proportions,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> recycling, <span class="at">y =</span> prop)) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">drop =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Recycling frequency&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Percentage %&quot;</span>) <span class="sc">+</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-recycling" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -4582,17 +4584,17 @@ Figure 3: How frequent on a scale of 1-5 do people recycle
 </div>
 </div>
 </div>
-<p>The plot above shows the recycling behaviour of people who don’t use recycling apps. Most people opted to give themselves a score of 4 out 5 in frequency of recylcing. Here no one gave a score below 3.</p>
+<p><a href="#fig-recycling" class="quarto-xref">Figure 3</a> above shows the recycling behaviour of people who don’t use recycling apps. Most people opted to give themselves a score of 4 out 5 in frequency of recylcing. Here no one gave a score below 3.</p>
 </section>
 <section id="reasons" class="level3">
 <h3 class="anchored" data-anchor-id="reasons">Reasons</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> reasons_against,</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> reason,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> count)) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Reasons for not using recycling-apps&quot;</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> <span class="st">&quot;Number of selected&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> reasons_against,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> reason,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">y =</span> count)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Reasons for not using recycling-apps&quot;</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> <span class="st">&quot;Number of selected&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-reasons" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -4606,7 +4608,7 @@ Figure 4: Reasons why people don’t use recycling-apps
 </div>
 </div>
 </div>
-<p>When asked for the possible reasons as to why they are not using recycling-apps, almost everyone said they wouldn’t know about these apps. Followed by the lack of time, with checking and interacting with an additional app everyday. One person who has tried recycling apps, said that the design of the app was too poor, to continue using it.</p>
+<p>When asked for the possible reasons as to why they are not using recycling-apps, almost everyone said they wouldn’t know about these apps. Followed by the lack of time, with checking and interacting with an additional app everyday. One person who has tried recycling apps, said that the design of the app was too poor, to continue using it. This is visualised above <a href="#fig-reasons" class="quarto-xref">Figure 4</a>.</p>
 </section>
 </section>
 </section>
@@ -4624,19 +4626,20 @@ Figure 4: Reasons why people don’t use recycling-apps
 <li><p>Have never heard of such an app and therefore never considered using one</p></li>
 </ul>
 <p>For developers of recycling apps it might be an interesting insight, that most people who don’t use such an app are not aware of their existence. Maybe also the marketing or design of the app should be for people with less digital proficiency, by taking a human-centered design approach.</p>
-</section>
-<section id="references" class="level1">
-<h1>References</h1>
-<p><a href="#fig-proficiency" class="quarto-xref">Figure 1</a></p>
-<p><a href="#fig-daily" class="quarto-xref">Figure 2</a></p>
-<p><a href="#fig-recycling" class="quarto-xref">Figure 3</a></p>
-<p><a href="#fig-reasons" class="quarto-xref">Figure 4</a></p>
-<p><a href="#tbl-gender" class="quarto-xref">Table 2</a></p>
-<p><a href="#tbl-age" class="quarto-xref">Table 1</a></p>
-<p><a href="#tbl-overview" class="quarto-xref">Table 3</a></p>
+
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-helmefalk2020make" class="csl-entry" role="listitem">
+Helmefalk, Miralem, and Joacim Rosenlund. 2020. <span>“Make <span>Waste Fun Again</span>! <span>A Gamification Approach</span> to <span>Recycling</span>.”</span> In <em>Interactivity, <span>Game Creation</span>, <span>Design</span>, <span>Learning</span>, and <span>Innovation</span></em>, edited by Anthony Brooks and Eva Irene Brooks, 328:415–26. Cham: Springer International Publishing. <a href="https://doi.org/10.1007/978-3-030-53294-9_30">https://doi.org/10.1007/978-3-030-53294-9_30</a>.
+</div>
+<div id="ref-johansson2016understanding" class="csl-entry" role="listitem">
+Johansson, K. 2016. <span>“Understanding Recycling Behavior: A Study of Motivational Factors Behind Waste Recycling.”</span> In <em><span>WASTE MANAGEMENT</span> 2016</em>, 401–14. Valencia, Spain. <a href="https://doi.org/10.2495/WM160361">https://doi.org/10.2495/WM160361</a>.
+</div>
+<div id="ref-kibria2023plastic" class="csl-entry" role="listitem">
+Kibria, Md. Golam, Nahid Imtiaz Masuk, Rafat Safayet, Huy Quoc Nguyen, and Monjur Mourshed. 2023. <span>“Plastic <span>Waste</span>: <span>Challenges</span> and <span>Opportunities</span> to <span>Mitigate Pollution</span> and <span>Effective Management</span>.”</span> <em>International Journal of Environmental Research</em> 17 (1): 20. <a href="https://doi.org/10.1007/s41742-023-00507-z">https://doi.org/10.1007/s41742-023-00507-z</a>.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {

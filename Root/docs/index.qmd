@@ -8,6 +8,7 @@ format:
     toc: true
     toc-depth: 2
 date: "2024-06-06"
+bibliography: RBTL.bib
 execute:
   warning: false
 editor_options: 
@@ -18,7 +19,7 @@ editor: visual
 ```{r}
 #| label: load-packages
 #| warning: false
-
+#| echo: false
 library(gapminder)
 library(ggplot2)
 library(knitr)
@@ -38,11 +39,11 @@ reasons_against <- read_csv("/cloud/project/Data/Processed/reasons.csv")
 
 # Introduction
 
-This report is written in the context of the RBTL course, where the goal was to get hands on experience with gathering, cleaning and analysing data for a study. The idea for the study came across as a coincidence, because I noticed that my flat-mate uses a recycling app and I have never heard of one beforehand. Therefore the goal of the study is to understand who the people are that use recycling apps and why people aren't using them yet.
+This report is written in the context of the RBTL course, where the goal was to get hands on experience with gathering, cleaning and analysing data for a study. We are trying to understand waste and more specifically waste management. As everyone knows, we should recycle as much as possible, but current effort are just not enough @kibria2023plastic The idea for the study came across as a coincidence, because I noticed that my flat-mate uses a recycling app and I have never heard of one beforehand. According to @johansson2016understanding the most important factors that help increase recycling are, well-designed infrastructure for recycling, specific recycling knowledge and general understanding of environmental aspects. Those could all be covered by an app. Another study explores how gamification of recycling can increase recyling rate, also something that can be achieved through an app @helmefalk2020make. Therefore the goal of the study is to understand who the people are that use recycling apps and why people aren't using them yet.
 
 # Method
 
-The data was gathered by first preparing a google form with relevant questions that provide insight into the interviewed person, their recycling behavior, usage of apps in general, usage of recycling apps and experiences with them. I first interviewed my friends, which was done in a morning when studying at a study-place. This yielded the opportunity to interview people studying in the same place, as some were listening and interested in participating as well. Therefore the data gathering posed to be a easier task than expected.
+The data was gathered using a Google form designed with relevant questions to gain inshights into the respondents recycling behavior, general app usage, and experiences with recycling apps. Initially, I interviewed my friends during a morning stud session at a study place. I informed all participants about the study's purpose and ensured that it is anonymous. This setting (study-place) provided the opportunity to engage with other students present in this room. Therefore the data collection process was more efficient and productive than anticipated.
 
 # Result
 
@@ -64,7 +65,7 @@ table_age |>
   cols_label(Age = "Age", 'n()' = "Number of data")
 ```
 
-Not surprisingly most people were between 18-25 years old, as most students are.
+@tbl-age shows not surprisingly that most people were between 18-25 years old, as most students are.
 
 ```{r}
 #| label: tbl-gender
@@ -80,9 +81,9 @@ table_gender |>
     cols_label(Gender = "Gender", 'n()' = "Number of participants")
 ```
 
-There were slightly more men interviewed than women. However as ETH is trying to aim for a 50/50 share of male/female ratio, at the moment there are still more men, so this is also an expected result.
+In @tbl-gender we see that slightly more men were interviewed than women. However at ETH the ratio of men/women is at the moment not fifty-fifty, but there are rather more men, so this is also an expected result.
 
-The next table summarised the findings of the past two:
+The @tbl-combined summarizes the findings of the past two:
 
 ```{r}
 #| label: tbl-overview
@@ -103,7 +104,7 @@ combined_table  |>
              Number_of_participants = "Number of participants")
 ```
 
-We can see that we have roughly the same amount of 18-25 and 26-31 year olds for both men and women. This is nice, because this means that we have a good mix in demographic of the students here at ETH.
+We can see that we have roughly the same amount of 18-25 and 26-31 year olds for both men and women. This is nice, because this means that we have a good mix in demographic from the students at ETH.
 
 ## Recycling app-users:
 
@@ -126,7 +127,7 @@ ggplot(data = count,
       y = "Number of people")
 ```
 
-The plot above shows, that on a score of 1-5, people who use recycling apps give themselves scores equal or above 3 in digital proficiency. This means, that people using such apps, think that they are digitally proficient.
+@fig-proficiency shows, that on a score of 1-5, people who use recycling apps give themselves scores equal or above 3 in digital proficiency. This means, that people using such apps, think that they are digitally proficient.
 
 ### Frequency of apps used daily
 
@@ -149,7 +150,7 @@ ggplot(data = app_percent,
       scale_x_discrete(drop = FALSE)
 ```
 
-Next this plot shows the usage of apps for daily tasks, for people using recycling apps. Here the scores are again predominantly in the higher half. So people using recycling apps, are also people who usually use apps for other daily tasks (i.e. Calender, Reminders, Shopping-lists, etc.).
+Next, @fig-daily shows the usage of apps for daily tasks, for people using recycling apps. Here the scores are again predominantly in the higher half. So people using recycling apps, are also people who usually use apps for other daily tasks (i.e. Calender, Reminders, Shopping-lists, etc.).
 
 ## Non-users of recycling apps
 
@@ -174,7 +175,7 @@ ggplot(data = proportions,
   theme_minimal()
 ```
 
-The plot above shows the recycling behaviour of people who don't use recycling apps. Most people opted to give themselves a score of 4 out 5 in frequency of recylcing. Here no one gave a score below 3.
+@fig-recycling above shows the recycling behaviour of people who don't use recycling apps. Most people opted to give themselves a score of 4 out 5 in frequency of recylcing. Here no one gave a score below 3.
 
 ### Reasons
 
@@ -189,7 +190,7 @@ ggplot(data = reasons_against,
            y = "Number of selected")
 ```
 
-When asked for the possible reasons as to why they are not using recycling-apps, almost everyone said they wouldn't know about these apps. Followed by the lack of time, with checking and interacting with an additional app everyday. One person who has tried recycling apps, said that the design of the app was too poor, to continue using it.
+When asked for the possible reasons as to why they are not using recycling-apps, almost everyone said they wouldn't know about these apps. Followed by the lack of time, with checking and interacting with an additional app everyday. One person who has tried recycling apps, said that the design of the app was too poor, to continue using it. This is visualised above @fig-reasons.
 
 # Conclusion
 
@@ -208,19 +209,3 @@ Non-users of recycling-apps:
 -   Have never heard of such an app and therefore never considered using one
 
 For developers of recycling apps it might be an interesting insight, that most people who don't use such an app are not aware of their existence. Maybe also the marketing or design of the app should be for people with less digital proficiency, by taking a human-centered design approach.
-
-# References
-
-@fig-proficiency
-
-@fig-daily
-
-@fig-recycling
-
-@fig-reasons
-
-@tbl-gender
-
-@tbl-age
-
-@tbl-overview
