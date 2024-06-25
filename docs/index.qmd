@@ -31,10 +31,10 @@ library(rnaturalearth)
 library(usethis)
 library(gt)
 library(DT)
-capstone <- read_csv("/cloud/project/Data/Processed/cleaned_capstone_data.csv")
-app_user <- read_csv("/cloud/project/Data/Processed/app_user.csv")
-not_use <- read_csv("/cloud/project/Data/Processed/not_use.csv")
-reasons_against <- read_csv("/cloud/project/Data/Processed/reasons.csv")
+capstone <- read_csv(here::here("Data/Processed/cleaned_capstone_data.csv"))
+app_user <- read_csv(here::here("Data/Processed/app_user.csv"))
+not_use <- read_csv(here::here("Data/Processed/not_use.csv"))
+reasons_against <- read_csv(here::here("Data/Processed/reasons.csv"))
 ```
 
 # Introduction
